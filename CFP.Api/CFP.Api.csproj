@@ -21,6 +21,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CFP.Application\CFP.Application.csproj" />
+    <ProjectReference Include="..\CFP.Domain\CFP.Domain.csproj" />
+    <ProjectReference Include="..\CFP.Infrastructure\CFP.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,6 @@
 using CFP.Api.Middlewares;
+using CFP.Application.Models;
+using CFP.Infrastructure.Extensions;
 
 namespace CFP.Api
 {
@@ -8,9 +10,13 @@ namespace CFP.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var conn = builder.Configuration.GetConnectionString("DefaultConnection");
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddSingleton(_ => new DbContextSettings { DataBaseConnectionString = conn });
+            builder.Services.AddDatabaseContext();
 
             var app = builder.Build();
 

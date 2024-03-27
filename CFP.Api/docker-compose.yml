@@ -1,1 +1,36 @@
-﻿
+﻿version: "3.9"
+
+networks:
+  cfp-dev:
+    driver: bridge
+
+services:
+  app:
+    container_name: cfp
+    build:
+        context: .
+        dockerfile: Dockerfile
+    ports:
+        - "80:80"
+    networks:
+        - cfp-dev
+    depends_on:
+        - postgres_db
+
+  postgres_db:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: 12345
+        POSTGRES_DB: cfp
+    ports:
+        - "5432:5432" 
+    networks:
+        - cfp-dev
+    volumes:
+        - postgres-data:/var/lib/postgresql/data
+
+volumes:
+    postgres-data:
+
