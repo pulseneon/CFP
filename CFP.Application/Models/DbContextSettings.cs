@@ -1,6 +1,6 @@
 ﻿namespace CFP.Application.Models
 {
-    public class Settings
+    public class DbContextSettings
     {
         public string? DataBaseConnectionString { get; set; }
     }

@@ -1,6 +1,7 @@
 using CFP.Api.Middlewares;
 using CFP.Application.Models;
 using CFP.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Builder;
 
 namespace CFP.Api
 {

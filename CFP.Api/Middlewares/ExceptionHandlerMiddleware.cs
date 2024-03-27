@@ -3,15 +3,22 @@ using Newtonsoft.Json;
 
 namespace CFP.Api.Middlewares
 {
-    public class ExceptionHandlerMiddleware : IMiddleware
+    public class ExceptionHandlerMiddleware
     {
-        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+        private readonly RequestDelegate next;
+
+        public ExceptionHandlerMiddleware(RequestDelegate next)
+        {
+            this.next = next;
+        }
+
+        public async Task Invoke(HttpContext context)
         {
             try
             {
                 await next.Invoke(context);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await HandleExceptionAsync(context, ex);
             }
