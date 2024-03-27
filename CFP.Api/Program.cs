@@ -1,7 +1,6 @@
 using CFP.Api.Middlewares;
 using CFP.Application.Models;
 using CFP.Infrastructure.Extensions;
-using Microsoft.AspNetCore.Builder;
 
 namespace CFP.Api
 {
@@ -27,12 +26,12 @@ namespace CFP.Api
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.MapGet("/", () => "Hello World");
             }
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
