@@ -2,7 +2,7 @@
 
 namespace CFP.Infrastructure
 {
-    public class CFPContext: DbContext
+    public class ServiceContext: DbContext
     {
 
     }

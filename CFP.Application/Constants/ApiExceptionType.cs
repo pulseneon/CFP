@@ -1,6 +1,6 @@
 ﻿namespace CFP.Application.Constants
 {
-    internal class ApiExceptionType
+    public class ApiExceptionType
     {
     }
 }
