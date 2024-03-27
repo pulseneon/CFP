@@ -1,3 +1,5 @@
+using CFP.Api.Middlewares;
+
 namespace CFP.Api
 {
     public class Program
@@ -11,6 +13,8 @@ namespace CFP.Api
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
 
             if (app.Environment.IsDevelopment())
             {
