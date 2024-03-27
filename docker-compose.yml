@@ -16,6 +16,9 @@ services:
         - cfp-dev
     depends_on:
         - postgres_db
+    environment:
+            ASPNETCORE_ENVIRONMENT: Development
+            ASPNETCORE_URLS: http://*:5000
 
   postgres_db:
     container_name: postgres
