@@ -1,14 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
-using System.Xml.Linq;
 
-namespace CFP.Domain.Entities
+namespace CFP.Application.Models.Requests
 {
-    public class Activity
+    public class ActivityRequest
     {
-        [Key]
-        public Guid Id { get; set; }
+        [Required, DataMember(Name = "activity")]
         public string Name { get; set; }
+        [Required, DataMember(Name = "description")]
         public string Description { get; set; }
     }
 }

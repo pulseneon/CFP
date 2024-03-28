@@ -1,6 +1,9 @@
 using CFP.Api.Middlewares;
+using CFP.Application.Extensions;
 using CFP.Application.Models;
 using CFP.Infrastructure.Extensions;
+using Microsoft.EntityFrameworkCore;
+using DbContext = CFP.Infrastructure.DbContext;
 
 namespace CFP.Api
 {
@@ -17,8 +20,17 @@ namespace CFP.Api
             builder.Services.AddSwaggerGen();
             builder.Services.AddSingleton(_ => new DbContextSettings { DataBaseConnectionString = conn });
             builder.Services.AddDatabaseContext();
+            builder.Services.AddRepositories();
+            builder.Services.AddServices();
 
             var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<DbContext>();
+                context.Database.Migrate();
+            }
 
             app.UseMiddleware<ExceptionHandlerMiddleware>();
 
