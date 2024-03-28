@@ -26,7 +26,6 @@ namespace CFP.Api
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-                app.MapGet("/", () => "Hello World");
             }
 
             app.UseHttpsRedirection();
