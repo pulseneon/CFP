@@ -30,9 +30,12 @@ namespace CFP.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Author = table.Column<Guid>(type: "uuid", nullable: false),
-                    Activity = table.Column<Guid>(type: "uuid", nullable: false),
+                    Activity = table.Column<Guid>(type: "uuid", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    Outline = table.Column<string>(type: "text", nullable: false)
+                    Outline = table.Column<string>(type: "text", nullable: true),
+                    Submitted = table.Column<bool>(type: "boolean", nullable: false),
+                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {

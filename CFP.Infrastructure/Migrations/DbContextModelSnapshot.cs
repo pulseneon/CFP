@@ -47,18 +47,26 @@ namespace CFP.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("Activity")
+                    b.Property<Guid?>("Activity")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("Author")
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<string>("Outline")
-                        .IsRequired()
+                    b.Property<string>("Name")
                         .HasColumnType("text");
+
+                    b.Property<string>("Outline")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Submitted")
+                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 

@@ -1,12 +1,16 @@
-﻿using CFP.Application.Extensions;
+﻿using CFP.Application.Constants;
+using CFP.Application.Exceptions;
+using CFP.Application.Extensions;
 using CFP.Application.Models.Requests;
 using CFP.Application.Models.Responses;
+using CFP.Application.Services.Interfaces;
 using CFP.Domain.Entities;
 using CFP.Infrastructure.Repositories.Interfaces;
+using System.Net;
 
 namespace CFP.Application.Services
 {
-    public class ActivityService
+    public class ActivityService: IActivityService
     {
         private readonly IActivityRepository _repository;
 
@@ -23,6 +27,11 @@ namespace CFP.Application.Services
 
         public async Task<ActivityResponse> AddActivityAsync(ActivityRequest request)
         {
+            if (await _repository.GetByName(request.Name) is not null)
+            {
+                throw new ApiException(HttpStatusCode.Conflict, ApiExceptionType.RecordExists, ApiExceptionMessage.RecordExists);
+            }
+
             var activity = new Activity()
             {
                 Id = Guid.NewGuid(),
@@ -31,7 +40,7 @@ namespace CFP.Application.Services
             };
 
             var result = await _repository.AddAsync(activity);
-
+                   
             return result.ToResponse();
         }
     }

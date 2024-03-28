@@ -11,10 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\CFP.Domain\CFP.Domain.csproj" />
     <ProjectReference Include="..\CFP.Infrastructure\CFP.Infrastructure.csproj" />
   </ItemGroup>

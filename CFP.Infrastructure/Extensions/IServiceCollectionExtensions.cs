@@ -13,7 +13,8 @@ namespace CFP.Infrastructure.Extensions
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            return services.AddTransient<IActivityRepository, ActivityRepository>();
+            return services.AddTransient<IActivityRepository, ActivityRepository>()
+                .AddTransient<IApplicationRepository, ApplicationRepository>();
         }
     }
 }

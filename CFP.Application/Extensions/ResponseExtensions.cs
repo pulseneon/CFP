@@ -17,5 +17,28 @@ namespace CFP.Application.Extensions
             Activity = activity.Name,
             Description = activity.Description,
         });
+
+        public static ApplicationResponse ToResponse(this Domain.Entities.Application response, string activityName) => new ApplicationResponse()
+        {
+            Id = response.Id,
+            Author = response.Author,
+            Activity = activityName,
+            Name = response.Name,
+            Description = response.Description,
+            Outline = response.Outline,
+        };
+
+        public static IEnumerable<ApplicationResponse> ToResponse(this List<Domain.Entities.Application> applications, List<Activity> activities)
+        {
+            return applications.Select(applications => new ApplicationResponse
+            {
+                Id = applications.Id,
+                Author = applications.Author,
+                Name = applications.Name,
+                Activity = activities.FirstOrDefault(x => x.Id == applications.Id).Name,
+                Description = applications.Description,
+                Outline = applications.Outline,
+            });
+        }
     }
 }

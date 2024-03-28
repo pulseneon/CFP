@@ -6,5 +6,7 @@ namespace CFP.Infrastructure.Repositories.Interfaces
     {
         Task<Activity> AddAsync(Activity activity);
         Task<List<Activity>> GetAllAsync();
+        Task<Activity?> GetById(Guid id);
+        Task<Activity?> GetByName(string name);
     }
 }

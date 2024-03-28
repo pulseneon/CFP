@@ -7,7 +7,7 @@ namespace CFP.Application.Models.Requests
     {
         [Required, DataMember(Name = "activity")]
         public string Name { get; set; }
-        [Required, DataMember(Name = "description")]
+        [Required]
         public string Description { get; set; }
     }
 }

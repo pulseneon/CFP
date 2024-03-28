@@ -22,7 +22,7 @@ namespace CFP.Api
             builder.Services.AddDatabaseContext();
             builder.Services.AddRepositories(); 
             builder.Services.AddServices();
-
+            
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())

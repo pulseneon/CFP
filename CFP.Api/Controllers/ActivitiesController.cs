@@ -17,20 +17,12 @@ namespace CFP.Api.Controllers
             _service = service;
         }
 
-        /// <summary>
-        /// Get activities
-        /// </summary>
-        /// <response code="200">Activities</response>
         [HttpGet]
         public async Task<IEnumerable<ActivityResponse>> GetActivitiesAsync()
         {
             return await _service.GetActivitiesAsync();
         }
 
-        /// <summary>
-        /// Add activity
-        /// </summary>
-        /// <response code="200">Activity</response>
         [HttpPost]
         public async Task<ActivityResponse> AddActivitiesAsync([Required] ActivityRequest request)
         {

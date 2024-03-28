@@ -22,5 +22,9 @@ namespace CFP.Infrastructure.Repositories
         }
 
         public async Task<List<Activity>> GetAllAsync() => await _context.Activities.AsNoTracking().ToListAsync();
+
+        public async Task<Activity?> GetByName(string name) => await _context.Activities.AsNoTracking().FirstOrDefaultAsync(x => x.Name.Equals(name));
+
+        public async Task<Activity?> GetById(Guid id) => await _context.Activities.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
     }
 }
