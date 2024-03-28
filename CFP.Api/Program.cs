@@ -20,7 +20,7 @@ namespace CFP.Api
             builder.Services.AddSwaggerGen();
             builder.Services.AddSingleton(_ => new DbContextSettings { DataBaseConnectionString = conn });
             builder.Services.AddDatabaseContext();
-            builder.Services.AddRepositories();
+            builder.Services.AddRepositories(); 
             builder.Services.AddServices();
 
             var app = builder.Build();
@@ -41,9 +41,6 @@ namespace CFP.Api
             }
 
             app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
             app.MapControllers();
 
             app.Run();
