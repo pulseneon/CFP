@@ -1,3 +1,5 @@
+[![wakatime](https://wakatime.com/badge/user/018ba518-681f-4096-b18a-c08885d13001/project/018e804b-e676-4b1b-beab-6a37d39bdba3.svg)](https://wakatime.com/badge/user/018ba518-681f-4096-b18a-c08885d13001/project/018e804b-e676-4b1b-beab-6a37d39bdba3)
+
 # Тестовое задание на стажировку OCS
 
 ### Постановка задачи
