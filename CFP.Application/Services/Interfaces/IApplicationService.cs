@@ -9,7 +9,7 @@ namespace CFP.Application.Services.Interfaces
         Task DeleteApplicationAsync(Guid id);
         Task<ApplicationResponse> EditApplicationAsync(Guid id, ApplicationEditRequest request);
         Task<ApplicationResponse> GetApplicationAsync(Guid id);
-        Task<IEnumerable<ApplicationResponse>> GetApplicationsAsync(DateTime? submittedAfter, DateTime? unsubmittedOlder);
+        Task<IEnumerable<ApplicationResponse>> GetApplicationsAsync(string submittedAfter, string unsubmittedOlder);
         Task<ApplicationResponse> GetCurrentApplication(Guid userId);
         Task SubmitApplicationAsync(Guid authorId);
     }

@@ -30,14 +30,14 @@ namespace CFP.Application.Extensions
 
         public static IEnumerable<ApplicationResponse> ToResponse(this List<Domain.Entities.Application> applications, List<Activity> activities)
         {
-            return applications.Select(applications => new ApplicationResponse
+            return applications.Select(app => new ApplicationResponse
             {
-                Id = applications.Id,
-                Author = applications.Author,
-                Name = applications.Name,
-                Activity = activities.FirstOrDefault(x => x.Id == applications.Id).Name,
-                Description = applications.Description,
-                Outline = applications.Outline,
+                Id = app.Id,
+                Author = app.Author,
+                Name = app.Name,
+                Activity = activities.FirstOrDefault(x => x.Id == app.Activity)?.Name,
+                Description = app.Description,
+                Outline = app.Outline,
             });
         }
     }

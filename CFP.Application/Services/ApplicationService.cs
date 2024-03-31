@@ -6,7 +6,7 @@ using CFP.Application.Models.Responses;
 using CFP.Application.Services.Interfaces;
 using CFP.Domain.Entities;
 using CFP.Infrastructure.Repositories.Interfaces;
-using System.Data;
+using System.Globalization;
 using System.Net;
 
 namespace CFP.Application.Services
@@ -15,6 +15,8 @@ namespace CFP.Application.Services
     {
         private readonly IApplicationRepository _applicationRepository;
         private readonly IActivityRepository _activityRepository;
+        
+        private const string _dateTimeFormat = "yyyy-MM-dd HH:mm.ss";
 
         public ApplicationService(IApplicationRepository applicationRepository, IActivityRepository activityRepository)
         {
@@ -124,7 +126,7 @@ namespace CFP.Application.Services
             return result.ToResponse(activity.Name);
         }
 
-        public async Task<IEnumerable<ApplicationResponse>> GetApplicationsAsync(DateTime? submittedAfter, DateTime? unsubmittedOlder)
+        public async Task<IEnumerable<ApplicationResponse>> GetApplicationsAsync(string submittedAfter, string unsubmittedOlder)
         {
             if (submittedAfter is not null && unsubmittedOlder is not null)
             {
@@ -134,10 +136,22 @@ namespace CFP.Application.Services
             var applications = await _applicationRepository.GetAllAsync();
             var activities = await _activityRepository.GetAllAsync();
 
+            if (!DateTime.TryParseExact(submittedAfter, _dateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedSubmittedAfter)
+                && submittedAfter is not null)
+            {
+                throw new ApiException(HttpStatusCode.BadRequest, ApiExceptionType.IncompatibleParameters, ApiExceptionMessage.IncompatibleParameters);
+            }
+
+            if (!DateTime.TryParseExact(unsubmittedOlder, _dateTimeFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedUnsubmittedOlder)
+                && unsubmittedOlder is not null)
+            {
+                throw new ApiException(HttpStatusCode.BadRequest, ApiExceptionType.IncompatibleParameters, ApiExceptionMessage.IncompatibleParameters);
+            }
+
             if (submittedAfter is not null)
-                applications.submittedAfter((DateTime)submittedAfter);
+                applications = applications.submittedAfter(parsedSubmittedAfter);
             if (unsubmittedOlder is not null)
-                applications.unsubmittedOlder((DateTime)unsubmittedOlder);
+                applications = applications.unsubmittedOlder(parsedUnsubmittedOlder);
 
             return applications.ToResponse(activities);
         }

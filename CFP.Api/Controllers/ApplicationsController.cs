@@ -3,6 +3,7 @@ using CFP.Application.Models.Requests;
 using CFP.Application.Models.Responses;
 using CFP.Application.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace CFP.Api.Controllers
 {
@@ -24,7 +25,7 @@ namespace CFP.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ApplicationResponse>> GetApplicationsAsync(DateTime? submittedAfter, DateTime? unsubmittedOlder)
+        public async Task<IEnumerable<ApplicationResponse>> GetApplicationsAsync(string? submittedAfter, string? unsubmittedOlder)
         {
             return await _service.GetApplicationsAsync(submittedAfter, unsubmittedOlder);
         }

@@ -60,9 +60,8 @@ namespace CFP.Infrastructure.Repositories
 
         public async Task<Domain.Entities.Application> EditAsync(Domain.Entities.Application application)
         {
-            var entity = await _context.Applications.FindAsync(application);
-
-            var result = _context.Applications.Update(entity);
+            var result = _context.Applications.Update(application);
+            await _context.SaveChangesAsync();
             return result.Entity;
         }
     }
