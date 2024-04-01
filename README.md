@@ -62,4 +62,4 @@
 
 3. Откройте в браузере swagger по пути:
 
-```http://localhost:5065/swagger/index.html```
+```http://localhost:5000/swagger/index.html```
